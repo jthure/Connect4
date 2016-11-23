@@ -1,0 +1,14 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jthure.connect4.android.GameFragment">
+
+    <com.jthure.connect4.android.game.GameBoardTable
+        android:id="@+id/game_board_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+    </com.jthure.connect4.android.game.GameBoardTable>
+</RelativeLayout>
