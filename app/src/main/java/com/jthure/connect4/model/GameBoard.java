@@ -1,5 +1,7 @@
 package com.jthure.connect4.model;
 
+import android.util.Log;
+
 import java.util.Observer;
 
 /**
@@ -36,19 +38,29 @@ public class GameBoard {
         Color color = board[row][column].getColor();
         for (int yStep = -1; yStep <= 1; yStep++) {
             for (int xStep = -1; xStep <= 1; xStep++) {
-                if (checkDirection(row, column, xStep, yStep, color)) return true;
+                if(!(yStep==0&&xStep==0)) {
+                    if (checkDirection(row, column, xStep, yStep, color)) return true;
+                }
             }
         }
         return false;
+
     }
 
     private boolean checkDirection(int row, int column, int xStep, int yStep, Color color) {
         for (int count = 1; count <= 3; count++) {
-            if (row + yStep < 0 || row + yStep >= nbrRows() || column + xStep < 0 || column + xStep >= nbrColumns())
-                return false;
-            if (!(board[row + yStep][column + xStep].getColor() == color)) return false;
-        }
 
+            int nextRow=row + yStep*count;
+            int nextColumn=column + xStep*count;
+
+            if (nextRow >= 0 && nextRow < nbrRows() && nextColumn >= 0 && nextColumn < nbrColumns()) {
+                if (!(board[nextRow][nextColumn].getColor() == color)) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
         return true;
     }
 

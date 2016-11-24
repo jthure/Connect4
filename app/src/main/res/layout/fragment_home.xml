@@ -3,20 +3,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.jthure.connect4.android.HomeFragment">
+
     <TextView
+        android:id="@+id/tv_home_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tv_home_title"
         android:layout_alignParentTop="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:text="@string/tv_home_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <Button
         android:id="@+id/btn_new_game"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_new_game"
         android:layout_alignParentBottom="true"
-        />
+        android:text="@string/btn_new_game" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_new_game"
+        android:layout_below="@id/tv_home_title"
+        android:layout_margin="30dp">
+
+        <TextView
+            android:id="@+id/tv_highscore_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="@string/tv_highscore_title" />
+
+
+        <LinearLayout
+            android:id="@+id/tv_highscore_columns"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_highscore_title"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tv_highscore_name" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_highscore_score" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/list_highscore"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tv_highscore_columns" />
+    </RelativeLayout>
+
 
 </RelativeLayout>

@@ -12,26 +12,19 @@ import com.jthure.connect4.model.GameBoard.PlayResult;
  */
 
 public class Game extends Observable {
-    private List<Player> players;
+    private Player[] players;
     private GameBoard board;
     private int turn;
-    private Map<String, Color> selectedColors;
+    private Checker turnChecker;
     private WinListener winListener;
+    private IO io;
 
-    public Game(int rows, int columns, WinListener winListener) {
+    public Game(int rows, int columns,Player[]playerNames, WinListener winListener,IO io) {
         board = new GameBoard(rows, columns);
-        players = new ArrayList<>();
+        players = playerNames;
         this.winListener=winListener;
-    }
-
-    public boolean addPlayer(Player player) {
-        if (players.contains(player)) return false;
-        return players.add(player);
-    }
-
-    @Deprecated
-    public void createGameBoard(int rows, int columns) {
-        board = new GameBoard(rows, columns);
+        turnChecker=new Checker();
+        this.io=io;
     }
 
     public GameBoard getGameBoard() {
@@ -39,20 +32,25 @@ public class Game extends Observable {
     }
 
     public Player getCurrentPlayer(){
-        return players.get(turn);
+        return players[turn];
     }
 
+    public Checker getTurnChecker(){return turnChecker;}
+
     private void nextTurn() {
-        turn = ++turn == players.size() ? 0 : turn;
+        turn = ++turn == players.length ? 0 : turn;
+        turnChecker.setColor(players[turn].getColor());
         setChanged();
         notifyObservers();
     }
 
     public void playColumn(int column) {
-        PlayResult result = board.playColumn(column, players.get(turn).getColor());
+        PlayResult result = board.playColumn(column, players[turn].getColor());
         switch (result) {
             case WIN:
                 winListener.onPlayerWon();
+                players[turn].incrementNbrWonGames();
+                io.writePlayer(players[turn]);
                 break;
             case VALID_PLAY:
                 nextTurn();

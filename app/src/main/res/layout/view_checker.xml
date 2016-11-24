@@ -2,5 +2,12 @@
 <com.jthure.connect4.android.game.CheckerView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="true"
-    android:layout_weight="1"/>
+    android:layout_weight="1">
+    <ImageView
+        android:id="@+id/checker_view_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/checker_empty"
+        android:padding="5dp"
+        />
+    </com.jthure.connect4.android.game.CheckerView>

@@ -2,6 +2,8 @@ package com.jthure.connect4.model;
 
 import android.support.annotation.NonNull;
 
+import java.util.Comparator;
+
 /**
  * Created by Jonas on 2016-11-23.
  */
@@ -22,6 +24,7 @@ public class Player {
     public void setColor(Color color){
         this.color=color;
     }
+    public void incrementNbrWonGames(){nbrWonGames++;}
 
     @Override
     public boolean equals(Object o) {
@@ -45,5 +48,25 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+    public int getWins() {
+        return nbrWonGames;
+    }
+
+    public static Comparator<Player> nameComparator(){
+        return new Comparator<Player>() {
+            @Override
+            public int compare(Player player1, Player player2) {
+                return player1.getName().compareTo(player2.getName());
+            }
+        };
+    }
+    public static Comparator<Player> scoreComparator(){
+        return new Comparator<Player>() {
+            @Override
+            public int compare(Player player1, Player player2) {
+                return player2.nbrWonGames-player1.nbrWonGames;
+            }
+        };
     }
 }

@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="game_board">#006aff</color>
+    <color name="checker_empty">#ffffff</color>
+    <color name="checker_yellow">#fffb00</color>
+    <color name="checker_red">#ff1100</color>
 </resources>

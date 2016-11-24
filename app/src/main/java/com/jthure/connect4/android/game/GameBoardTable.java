@@ -1,10 +1,12 @@
 package com.jthure.connect4.android.game;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
 
+import com.jthure.connect4.R;
 import com.jthure.connect4.model.Game;
 import com.jthure.connect4.model.GameBoard;
 
@@ -22,6 +24,7 @@ public class GameBoardTable extends TableLayout {
     public GameBoardTable(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context=context;
+
     }
     public void setUp(Game game, PlayColumnButton.OnColumnClickListener onColumnClickListener) {
         addView(new HeaderRow(context,game,onColumnClickListener));
