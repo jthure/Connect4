@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jthure.connect4.android.game.CheckerView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.jthure.connect4.android.view.CheckerView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1">
@@ -10,4 +10,4 @@
         android:src="@drawable/checker_empty"
         android:padding="5dp"
         />
-    </com.jthure.connect4.android.game.CheckerView>
+    </com.jthure.connect4.android.view.CheckerView>

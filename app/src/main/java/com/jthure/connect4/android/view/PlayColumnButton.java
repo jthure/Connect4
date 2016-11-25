@@ -1,22 +1,16 @@
-package com.jthure.connect4.android.game;
+package com.jthure.connect4.android.view;
 
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.jthure.connect4.R;
-import com.jthure.connect4.model.Checker;
 import com.jthure.connect4.model.Game;
-
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  * Created by Jonas on 2016-11-23.
@@ -25,7 +19,6 @@ import java.util.Observer;
 public class PlayColumnButton extends LinearLayout implements  View.OnClickListener {
     private int column;
     private OnColumnClickListener onColumnClickListener;
-    private Checker turnChecker;
 
     public PlayColumnButton(Context context) {
         super(context);

@@ -1,4 +1,4 @@
-package com.jthure.connect4.android;
+package com.jthure.connect4.android.view.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,9 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.jthure.connect4.R;
+import com.jthure.connect4.android.util.ColorUtil;
 import com.jthure.connect4.model.Color;
 
 /**
@@ -49,15 +50,8 @@ public class ColorSpinnerAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View v = LayoutInflater.from(context).inflate(R.layout.view_spinner_color_select_item,null);
-        ((ImageView)v.findViewById(R.id.iv_color)).setImageResource(getDrawable(values[i]));
+        ((TextView)v.findViewById(R.id.tv_color)).setText(values[i].toString());
+        ((ImageView)v.findViewById(R.id.iv_color)).setImageResource(ColorUtil.getImageResource(values[i]));
         return v;
-    }
-
-    private int getDrawable(Color color) {
-        switch(color){
-            case YELLOW: return R.drawable.checker_yellow;
-            case RED: return R.drawable.checker_red;
-            default: return R.drawable.checker_yellow;
-        }
     }
 }

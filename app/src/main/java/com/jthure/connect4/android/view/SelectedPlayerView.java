@@ -1,4 +1,4 @@
-package com.jthure.connect4.android;
+package com.jthure.connect4.android.view;
 
 import android.content.Context;
 import android.os.Build;
@@ -12,7 +12,6 @@ import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.jthure.connect4.R;
-import com.jthure.connect4.model.Player;
 import com.jthure.connect4.util.PlayerColorMap;
 
 import java.util.Observable;
@@ -53,6 +52,7 @@ public class SelectedPlayerView extends LinearLayout implements Observer {
         colorSpinner.setAdapter(adapter);
         colorSpinner.setOnItemSelectedListener(listener);
         colorSpinner.setTag(playerName);
+        v.update(playerColorMap,null);
         return v;
     }
 

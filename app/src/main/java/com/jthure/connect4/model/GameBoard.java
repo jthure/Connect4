@@ -5,12 +5,17 @@ import android.util.Log;
 import java.util.Observer;
 
 /**
- * Created by Jonas on 2016-11-21.
+ * Represents the the game board which a {@link Game} is played on
  */
 
 public class GameBoard {
     private Checker[][] board;
 
+    /**
+     *
+     * @param rows
+     * @param columns
+     */
     public GameBoard(int rows, int columns) {
         board = new Checker[rows][columns];
         for (int row = 0; row < rows; row++) {
@@ -62,6 +67,13 @@ public class GameBoard {
             }
         }
         return true;
+    }
+    public void reset(){
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board[0].length; col++) {
+                board[row][col].setColor(Color.EMPTY);
+            }
+        }
     }
 
     public int nbrRows() {

@@ -1,4 +1,4 @@
-package com.jthure.connect4.android;
+package com.jthure.connect4.android.view.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.jthure.connect4.R;
-import com.jthure.connect4.model.IO;
+import com.jthure.connect4.util.IO;
 import com.jthure.connect4.model.Player;
 
 import java.util.Comparator;

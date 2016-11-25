@@ -2,13 +2,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jthure.connect4.android.GameFragment">
+    tools:context="com.jthure.connect4.android.fragment.GameFragment">
 
-    <com.jthure.connect4.android.game.GameBoardTable
-        android:id="@+id/game_board_table"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        >
+        android:layout_alignParentTop="true"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin">
 
-    </com.jthure.connect4.android.game.GameBoardTable>
+
+        <com.jthure.connect4.android.view.GameTitleTextView
+            android:id="@+id/tv_game_title"
+            style="@style/TopTitleTextView"
+            android:text="@string/test" />
+
+        <com.jthure.connect4.android.view.GameBoardTable
+            android:id="@+id/game_board_table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_game_title">
+
+        </com.jthure.connect4.android.view.GameBoardTable>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_game_reset"
+        style="@style/BottomButton"
+        android:text="@string/btn_game_reset" />
 </RelativeLayout>

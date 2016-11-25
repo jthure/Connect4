@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#244ee4</color>
+    <color name="colorPrimaryDark">#1f3dab</color>
+    <color name="colorAccent">#cb3cff</color>
 
     <color name="game_board">#006aff</color>
     <color name="checker_empty">#ffffff</color>
     <color name="checker_yellow">#fffb00</color>
     <color name="checker_red">#ff1100</color>
+    <color name="checker_green">#11ff00</color>
+    <color name="checker_orange">#ff8c00</color>
+    <color name="checker_purple">#d500ff</color>
 </resources>

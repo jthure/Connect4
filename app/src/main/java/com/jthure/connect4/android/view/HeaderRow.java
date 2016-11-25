@@ -1,4 +1,4 @@
-package com.jthure.connect4.android.game;
+package com.jthure.connect4.android.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.widget.TableRow;
 
 import com.jthure.connect4.model.Game;
-import com.jthure.connect4.model.GameBoard;
 
 /**
  * Created by Jonas on 2016-11-23.

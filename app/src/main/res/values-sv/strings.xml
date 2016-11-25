@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Connect4</string>
+    <string name="btn_add_player">Lägg till</string>
+    <string name="btn_game_reset">Återställ</string>
+    <string name="btn_new_game">Nytt spel</string>
+    <string name="btn_new_player">Ny spelare</string>
+    <string name="btn_start_game">Starta spel</string>
+    <string name="et_new_player_name_hint">Skriv namn</string>
+    <string name="test"></string>
+    <string name="tv_highscore_name">Namn</string>
+    <string name="tv_highscore_score">Poäng</string>
+    <string name="tv_highscore_title">Rekord</string>
+    <string name="tv_new_game_title">Nytt spel</string>
+    <string name="tv_new_player_title">Ny spelare</string>
+    <string name="tv_players_title">Spelare</string>
+    <string name="tv_new_game_nbr_columns">Kolumner</string>
+    <string name="tv_new_game_nbr_rows">Rader</string>
+    <string name="tv_game_title_turn">"\'s tur"</string>
+    <string name="tv_game_title_won">" vann!"</string>
+</resources>

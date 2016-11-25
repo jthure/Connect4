@@ -2,66 +2,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jthure.connect4.android.HomeFragment">
-
-    <TextView
-        android:id="@+id/tv_home_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:gravity="center_horizontal"
-        android:text="@string/tv_home_title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+    tools:context="com.jthure.connect4.android.fragment.HomeFragment">
 
     <Button
         android:id="@+id/btn_new_game"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        style="@style/BottomButton"
         android:text="@string/btn_new_game" />
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_above="@id/btn_new_game"
-        android:layout_below="@id/tv_home_title"
-        android:layout_margin="30dp">
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin">
 
         <TextView
-            android:id="@+id/tv_highscore_title"
+            android:id="@+id/tv_home_title"
+            style="@style/TopTitleTextView"
+            android:text="@string/tv_home_title" />
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:text="@string/tv_highscore_title" />
 
-
-        <LinearLayout
-            android:id="@+id/tv_highscore_columns"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_highscore_title"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:weightSum="1">
+            android:layout_below="@id/tv_home_title">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/tv_highscore_name" />
+                android:id="@+id/tv_highscore_title"
+                style="@style/SubTitleTextView"
+                android:layout_alignParentTop="true"
+                android:text="@string/tv_highscore_title" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tv_highscore_score" />
-        </LinearLayout>
 
-        <ListView
-            android:id="@+id/list_highscore"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/tv_highscore_columns" />
+            <LinearLayout
+                android:id="@+id/tv_highscore_columns"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_highscore_title"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tv_highscore_name"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_highscore_score"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/list_highscore"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/tv_highscore_columns" />
+        </RelativeLayout>
     </RelativeLayout>
+
 
 
 </RelativeLayout>

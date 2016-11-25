@@ -1,4 +1,4 @@
-package com.jthure.connect4.android;
+package com.jthure.connect4.android.fragment;
 
 
 import android.os.Bundle;
@@ -7,22 +7,21 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.jthure.connect4.R;
-import com.jthure.connect4.android.game.GameBoardTable;
-import com.jthure.connect4.android.game.PlayColumnButton;
+import com.jthure.connect4.android.view.GameTitleTextView;
+import com.jthure.connect4.android.MainActivity;
+import com.jthure.connect4.android.view.GameBoardTable;
+import com.jthure.connect4.android.view.PlayColumnButton;
 import com.jthure.connect4.model.Color;
 import com.jthure.connect4.model.Game;
 import com.jthure.connect4.model.Player;
 import com.jthure.connect4.util.PlayerColorMap;
 
-import java.util.Map;
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GameFragment extends Fragment implements PlayColumnButton.OnColumnClickListener, Game.WinListener {
+public class GameFragment extends Fragment implements PlayColumnButton.OnColumnClickListener{
     private static final String ARG_PLAYERS="arg_players";
     private static final String ARG_ROWS="arg_rows";
     private static final String ARG_COLUMNS="arg_columns";
@@ -30,6 +29,7 @@ public class GameFragment extends Fragment implements PlayColumnButton.OnColumnC
 
 
     private Game game;
+    private GameTitleTextView gameTitleTextView;
 
 
     public GameFragment() {
@@ -54,10 +54,10 @@ public class GameFragment extends Fragment implements PlayColumnButton.OnColumnC
         String[] playerNames = getArguments().getStringArray(ARG_PLAYERS);
         Player[] players = new Player[playerNames.length];
         for(int i =0;i<playerNames.length;i++){
-            players[i]=new Player(playerNames[i],MainActivity.io.getScore(playerNames[i]));
+            players[i]=new Player(playerNames[i], MainActivity.io.getScore(playerNames[i]));
             players[i].setColor((Color)getArguments().getSerializable(ARG_COLOR+playerNames[i]));
         }
-        game = new Game(getArguments().getInt(ARG_ROWS),getArguments().getInt(ARG_COLUMNS),players,this,MainActivity.io);
+        game = new Game(getArguments().getInt(ARG_ROWS),getArguments().getInt(ARG_COLUMNS),players,MainActivity.io);
         super.onCreate(savedInstanceState);
     }
 
@@ -65,7 +65,17 @@ public class GameFragment extends Fragment implements PlayColumnButton.OnColumnC
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_game, container, false);
+        gameTitleTextView=(GameTitleTextView) v.findViewById(R.id.tv_game_title);
+        gameTitleTextView.observerGame(game);
+        game.setWinListener(gameTitleTextView);
         ((GameBoardTable)v.findViewById(R.id.game_board_table)).setUp(game,this);
+
+        v.findViewById(R.id.btn_game_reset).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                game.restart();
+            }
+        });
         return v;
     }
 
@@ -74,8 +84,4 @@ public class GameFragment extends Fragment implements PlayColumnButton.OnColumnC
         game.playColumn(column);
     }
 
-    @Override
-    public void onPlayerWon() {
-        Toast.makeText(getContext(),game.getCurrentPlayer().getName(),Toast.LENGTH_LONG).show();
-    }
 }

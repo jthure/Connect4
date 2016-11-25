@@ -1,4 +1,4 @@
-package com.jthure.connect4.android;
+package com.jthure.connect4.android.fragment;
 
 
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.jthure.connect4.R;
+import com.jthure.connect4.android.MainActivity;
+import com.jthure.connect4.android.view.adapter.PlayerListAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,7 +35,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
         View v =  inflater.inflate(R.layout.fragment_home, container, false);
         v.findViewById(R.id.btn_new_game).setOnClickListener(this);
-        ((ListView)v.findViewById(R.id.list_highscore)).setAdapter(new PlayerListAdapter(getContext(),MainActivity.io) );
+        ((ListView)v.findViewById(R.id.list_highscore)).setAdapter(new PlayerListAdapter(getContext(), MainActivity.io) );
         return v;
     }
 
@@ -41,7 +43,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_new_game:
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new NewGameFragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new NewGameFragment()).addToBackStack(null).commit();
         }
 
     }

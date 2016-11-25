@@ -1,12 +1,9 @@
-package com.jthure.connect4.android.game;
+package com.jthure.connect4.android.view;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.view.ViewGroup;
 import android.widget.TableLayout;
 
-import com.jthure.connect4.R;
 import com.jthure.connect4.model.Game;
 import com.jthure.connect4.model.GameBoard;
 

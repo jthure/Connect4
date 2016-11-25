@@ -1,4 +1,4 @@
-package com.jthure.connect4.android.game;
+package com.jthure.connect4.android.view;
 
 import android.content.Context;
 import android.os.Build;
@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.jthure.connect4.R;
+import com.jthure.connect4.android.util.ColorUtil;
 import com.jthure.connect4.model.Checker;
 
 import java.util.Observable;
@@ -48,17 +49,7 @@ public class CheckerView extends FrameLayout implements Observer{
 
     @Override
     public void update(Observable observable, Object o) {
-        switch (checker.getColor()) {
-            case EMPTY:
-                checkerImage.setImageResource(R.drawable.checker_empty);
-                break;
-            case RED:
-                checkerImage.setImageResource(R.drawable.checker_red);
-                break;
-            case YELLOW:
-                checkerImage.setImageResource(R.drawable.checker_yellow);
-                break;
-        }
+        checkerImage.setImageResource(ColorUtil.getImageResource(checker.getColor()));
     }
 
 
@@ -69,6 +60,7 @@ public class CheckerView extends FrameLayout implements Observer{
         checker.addObserver(checkerView);
         checkerView.checker = checker;
         checkerView.checkerImage = (ImageView)checkerView.findViewById(R.id.checker_view_image);
+        checkerView.update(checker,null);
         return checkerView;
     }
 

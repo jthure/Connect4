@@ -1,14 +1,11 @@
-package com.jthure.connect4.android;
+package com.jthure.connect4.android.view.adapter;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 
-import com.jthure.connect4.R;
-import com.jthure.connect4.model.IO;
+import com.jthure.connect4.util.IO;
 import com.jthure.connect4.model.Player;
 
 import java.util.Collections;
@@ -28,6 +25,7 @@ public abstract class PlayerAdapter extends BaseAdapter implements Observer {
 
     public PlayerAdapter(Context context, IO io){
         this.io = io;
+        io.addObserver(this);
         this.context=context;
         update(io,null);
     }

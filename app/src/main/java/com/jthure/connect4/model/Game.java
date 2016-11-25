@@ -1,14 +1,12 @@
 package com.jthure.connect4.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.Observable;
 
 import com.jthure.connect4.model.GameBoard.PlayResult;
+import com.jthure.connect4.util.IO;
 
 /**
- * Created by Jonas on 2016-11-23.
+ * Represents a game that is being played by several {@link Player}s on a {@link GameBoard}
  */
 
 public class Game extends Observable {
@@ -18,25 +16,56 @@ public class Game extends Observable {
     private Checker turnChecker;
     private WinListener winListener;
     private IO io;
+    private boolean finished;
 
-    public Game(int rows, int columns,Player[]playerNames, WinListener winListener,IO io) {
+    /**
+     * Creates a new game with specified attributes
+     * @param rows the number of rows in the {@link GameBoard}
+     * @param columns the number of columns in the {@link GameBoard}
+     * @param playerNames the players
+     * @param io The IO handler used to write persistent data
+     */
+    public Game(int rows, int columns,Player[]playerNames,IO io) {
         board = new GameBoard(rows, columns);
         players = playerNames;
-        this.winListener=winListener;
         turnChecker=new Checker();
+        turnChecker.setColor(players[0].getColor());
         this.io=io;
     }
 
+    /**
+     * Sets the {@link WinListener}
+     * @param winListener
+     */
+    public void setWinListener(WinListener winListener){
+        this.winListener=winListener;
+    }
+
+    /**
+     * Returns the {@link GameBoard} of this Game
+     * @return the {@link GameBoard} of this Game
+     */
     public GameBoard getGameBoard() {
         return board;
     }
 
+    /**
+     * Returns the player that are next in line to make a play.
+     * @return the player that are next in line to make a play.
+     */
     public Player getCurrentPlayer(){
         return players[turn];
     }
 
+    /**
+     * Returns a checker with the color of the player that are next in line to make a play.
+     * @return a checker with the color of the player that are next in line to make a play.
+     */
     public Checker getTurnChecker(){return turnChecker;}
 
+    /**
+     * Advance turn counter
+     */
     private void nextTurn() {
         turn = ++turn == players.length ? 0 : turn;
         turnChecker.setColor(players[turn].getColor());
@@ -44,10 +73,16 @@ public class Game extends Observable {
         notifyObservers();
     }
 
+    /**
+     * Drops a checker at the specified column. The play could result in three possible {@link PlayResult}s
+     * @param column the column to play the checker at
+     */
     public void playColumn(int column) {
+        if(finished) return;
         PlayResult result = board.playColumn(column, players[turn].getColor());
         switch (result) {
             case WIN:
+                finished=true;
                 winListener.onPlayerWon();
                 players[turn].incrementNbrWonGames();
                 io.writePlayer(players[turn]);
@@ -59,7 +94,23 @@ public class Game extends Observable {
                 break;
         }
     }
+
+    /**
+     * Listener interface to nofify the listener when a player has won the game.
+     */
     public interface WinListener{
+        /**
+         * Notifies the listener that a player has won the game.
+         */
         void onPlayerWon();
+    }
+
+    /**
+     * Restarts the game by resetting the {@link GameBoard}
+     */
+    public void restart(){
+        board.reset();
+        nextTurn();
+        finished=false;
     }
 }
