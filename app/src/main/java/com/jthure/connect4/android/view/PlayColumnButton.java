@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
@@ -15,10 +16,11 @@ import com.jthure.connect4.R;
 import com.jthure.connect4.model.Game;
 
 /**
- * Created by Jonas on 2016-11-23.
+ * Button that is related to a column in a {@link com.jthure.connect4.model.GameBoard}. When clicked
+ * it notifies its {@link OnColumnClickListener}
  */
 
-public class PlayColumnButton extends RelativeLayout implements  View.OnClickListener {
+public class PlayColumnButton extends FrameLayout implements  View.OnClickListener {
     private int column;
     private OnColumnClickListener onColumnClickListener;
 
@@ -45,9 +47,6 @@ public class PlayColumnButton extends RelativeLayout implements  View.OnClickLis
         button.column = column;
         button.onColumnClickListener = onColumnClickListener;
         CheckerView checkerView=CheckerView.createCheckerView(inflater,button,game.getTurnChecker());
-        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        params.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-        checkerView.setLayoutParams(params);
         button.addView(checkerView);
         return button;
     }
@@ -57,21 +56,13 @@ public class PlayColumnButton extends RelativeLayout implements  View.OnClickLis
         onColumnClickListener.onColumnClick(column);
     }
 
-
-//    @Override
-//    public void update(Observable observable, Object o) {
-//        switch (turnChecker.getColor()) {
-//            case RED:
-//                Log.d("TURN","RED");
-//                //setText("RED");
-//                break;
-//            case YELLOW:
-//                //setText("YELLOW");
-//                break;
-//        }
-//    }
-
+    /**
+     * Listner interface for the {@link PlayColumnButton}
+     */
     public interface OnColumnClickListener {
+        /**
+         * Called when the button corresponding to the specified column is clicked
+         */
         void onColumnClick(int column);
     }
 }

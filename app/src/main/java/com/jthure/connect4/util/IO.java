@@ -6,13 +6,30 @@ import java.util.List;
 import java.util.Observable;
 
 /**
- * Created by Jonas on 2016-11-24.
+ * Abstract utility class to read and write persistent data. This class should be implemented by a
+ * platform specific subclass. Classes that are interested in changes of the players should observe
+ * this class.
  */
 
 public abstract class IO extends Observable{
     protected static final String LOG_FILE="audit_log.txt";
+
+    /**
+     * Load the players that exists on the client
+     * @return A list of players
+     */
     public abstract List<Player> loadPlayers();
+
+    /**
+     * Get the score that is stored for the player with the specified name
+     * @param playerName The name of the player
+     * @return The score of the player
+     */
     public abstract int getScore(String playerName);
+
+    /**
+     * Writes the information about the specified player to storage
+     */
     public void writePlayer(Player player){
         writePlayerToStorage(player);
         setChanged();
@@ -21,5 +38,9 @@ public abstract class IO extends Observable{
 
     protected abstract void writePlayerToStorage(Player player);
 
+    /**
+     * Writes the specified message to the audit log file
+     * @param msg The message to be logged
+     */
     public abstract void log(String msg);
 }

@@ -12,7 +12,7 @@ import android.widget.EditText;
 import com.jthure.connect4.R;
 
 /**
- * Created by Jonas on 2016-11-25.
+ * A {@link DialogFragment} that is shown when the user is creating a new user.
  */
 
 public class NewPlayerDialogFragment extends DialogFragment {
@@ -27,8 +27,8 @@ public class NewPlayerDialogFragment extends DialogFragment {
         View v = View.inflate(getContext(),R.layout.fragment_dialog_new_player,null);
         nameEditText =(EditText)v.findViewById(R.id.et_new_player_name);
         builder.setView(v);
-        builder.setTitle("Title");
-        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+        builder.setTitle(getResources().getString(R.string.tv_new_player_title));
+        builder.setPositiveButton(getResources().getString(R.string.tv_new_player_save), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String name = nameEditText.getText().toString();
@@ -38,7 +38,7 @@ public class NewPlayerDialogFragment extends DialogFragment {
             }
         });
 
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getResources().getString(R.string.tv_new_player_cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dismiss();

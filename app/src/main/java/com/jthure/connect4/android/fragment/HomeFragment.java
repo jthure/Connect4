@@ -14,18 +14,13 @@ import com.jthure.connect4.android.MainActivity;
 import com.jthure.connect4.android.view.adapter.PlayerListAdapter;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A {@link Fragment} that is first fragment to be shown when th app starts. It contains the highscore
+ * list.
  */
 public class HomeFragment extends Fragment implements View.OnClickListener{
-    //private IOimpl io;
-
-    public HomeFragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        //io=(IOimpl) getArguments().getSerializable(MainActivity.ARG_IO);
         super.onCreate(savedInstanceState);
     }
 
@@ -47,11 +42,4 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         }
 
     }
-//    public static HomeFragment newInstance(IOimpl io){
-//        Bundle args = new Bundle();
-//        args.putSerializable(MainActivity.ARG_IO,io);
-//        HomeFragment fragment = new HomeFragment();
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
 }

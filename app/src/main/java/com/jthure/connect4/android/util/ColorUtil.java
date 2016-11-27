@@ -4,10 +4,15 @@ import com.jthure.connect4.R;
 import com.jthure.connect4.model.Color;
 
 /**
- * Created by Jonas on 2016-11-25.
+ * Utility class used to determine the drawable to be used for a {@link Color}
  */
 
 public class ColorUtil {
+    /**
+     * Determine the drawable to be used for a the specified color
+     * @param color the color that a drawable is needed for
+     * @return the drawable corresponding to the specified color
+     */
     public static int getImageResource(Color color) {
         switch (color) {
             case EMPTY:

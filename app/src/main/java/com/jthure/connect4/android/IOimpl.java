@@ -105,6 +105,10 @@ public class IOimpl extends IO implements Serializable {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Checks if there are external storage available to write to
+     */
     private boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state)) {
@@ -113,6 +117,10 @@ public class IOimpl extends IO implements Serializable {
         return false;
     }
 
+    /**
+     * Database containing records of the players. One single table with two columns, player name
+     * and player score
+     */
     private static class MyDB extends SQLiteOpenHelper{
 
         public MyDB(Context context) {

@@ -15,7 +15,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Created by Jonas on 2016-11-24.
+ * Abstract adapter responsible to provide views of existing players. It observes the {@link IO} so
+ * that any changes in the player storage can be updated accordingly.
  */
 
 public abstract class PlayerAdapter extends BaseAdapter implements Observer {
@@ -57,7 +58,14 @@ public abstract class PlayerAdapter extends BaseAdapter implements Observer {
         notifyDataSetChanged();
     }
 
+    /**
+     * Returns the {@link Comparator} to use when sorting the players
+     */
     protected abstract Comparator<Player> comparator();
+
+    /**
+     * Returns the View of the color at position i, that the adapter should return.
+     */
     protected abstract View itemView(int i);
 
 

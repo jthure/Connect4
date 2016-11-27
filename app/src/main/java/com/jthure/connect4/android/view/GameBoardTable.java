@@ -8,7 +8,7 @@ import com.jthure.connect4.model.Game;
 import com.jthure.connect4.model.GameBoard;
 
 /**
- * Created by Jonas on 2016-11-22.
+ * A view representing the GameBoard.
  */
 
 public class GameBoardTable extends TableLayout {
@@ -23,6 +23,14 @@ public class GameBoardTable extends TableLayout {
         this.context=context;
 
     }
+
+    /**
+     * Creates the row views that this view consists of. The first row is not part of the GameBoard
+     * but a row with controls for playing a checker at each column
+     * @param game A {@link Game} that this view should display
+     * @param onColumnClickListener A listener that listens for clicks that indicate that a row has
+     *                              been played
+     */
     public void setUp(Game game, PlayColumnButton.OnColumnClickListener onColumnClickListener) {
         addView(new HeaderRow(context,game,onColumnClickListener));
         GameBoard board=game.getGameBoard();

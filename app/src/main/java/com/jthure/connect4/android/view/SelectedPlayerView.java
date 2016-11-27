@@ -18,7 +18,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Created by Jonas on 2016-11-24.
+ * View that displays a selected player and this players selected color. It observes a {@link PlayerColorMap}
+ * so that it can update changes in player colors accordingly
  */
 
 public class SelectedPlayerView extends LinearLayout implements Observer {
@@ -41,7 +42,14 @@ public class SelectedPlayerView extends LinearLayout implements Observer {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
-
+    /**
+     * Creates a new view
+     * @param inflater An inflater that inflates the view
+     * @param playerName The name of the player that should be displayed
+     * @param adapter an adapter used to provide color views to the color selection spinner
+     * @param listener Listener that listens to selections in the color selection listener
+     * @param playerColorMap A {@link PlayerColorMap} that holds the mappings of players and colors
+     */
     public static SelectedPlayerView createView(LayoutInflater inflater, String playerName, SpinnerAdapter adapter, AdapterView.OnItemSelectedListener listener, PlayerColorMap playerColorMap){
         SelectedPlayerView v = (SelectedPlayerView)inflater.inflate(R.layout.view_selected_player_item,null);
         v.playerColorMap=playerColorMap;

@@ -19,7 +19,8 @@ import com.jthure.connect4.model.Player;
 import com.jthure.connect4.util.PlayerColorMap;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A {@link Fragment} that displays a Game that is played. This is also the class that listens for
+ * clicks that indicates that a player has played a column and tells the {@link Game} about this.
  */
 public class GameFragment extends Fragment implements PlayColumnButton.OnColumnClickListener{
     private static final String ARG_PLAYERS="arg_players";
@@ -29,12 +30,6 @@ public class GameFragment extends Fragment implements PlayColumnButton.OnColumnC
 
 
     private Game game;
-    private GameTitleTextView gameTitleTextView;
-
-
-    public GameFragment() {
-        // Required empty public constructor
-    }
 
     public static GameFragment newInstance(String[] players, PlayerColorMap selectedColors, int rows, int columns){
         Bundle args = new Bundle();
@@ -65,8 +60,8 @@ public class GameFragment extends Fragment implements PlayColumnButton.OnColumnC
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_game, container, false);
-        gameTitleTextView=(GameTitleTextView) v.findViewById(R.id.tv_game_title);
-        gameTitleTextView.observerGame(game);
+        GameTitleTextView gameTitleTextView = (GameTitleTextView) v.findViewById(R.id.tv_game_title);
+        gameTitleTextView.observeGame(game);
         game.setFinishListener(gameTitleTextView);
         ((GameBoardTable)v.findViewById(R.id.game_board_table)).setUp(game,this);
 

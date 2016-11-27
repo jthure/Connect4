@@ -25,10 +25,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A {@link Fragment} that is shown when a user is starting a new game. It has the possibility to add
+ * existing players to the game, add new players and change the colors of players that has been added to
+ * the game and specify the number of columns and rows that the {@link com.jthure.connect4.model.GameBoard}
+ * should consist of.
  */
 public class NewGameFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener, NewPlayerDialogFragment.Callback {
-    private static final String TAG = NewGameFragment.class.getSimpleName();
 
     private Spinner playerSpinner;
     private List<String> selectedPlayers;
@@ -39,16 +41,12 @@ public class NewGameFragment extends Fragment implements View.OnClickListener, A
     private Spinner rows;
     private Spinner columns;
 
-    public NewGameFragment() {
-        // Required empty public constructor
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         playerColors = new PlayerColorMap();
         selectedPlayers = new LinkedList<>();
-        super.onCreate(savedInstanceState);
         colorSpinnerAdapter = new ColorSpinnerAdapter(getContext());
+        super.onCreate(savedInstanceState);
     }
 
     @Override

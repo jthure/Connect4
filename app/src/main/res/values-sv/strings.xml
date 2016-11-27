@@ -7,7 +7,7 @@
     <string name="btn_new_player">Ny spelare</string>
     <string name="btn_start_game">Starta spel</string>
     <string name="et_new_player_name_hint">Skriv namn</string>
-    <string name="test"></string>
+    <string name="test">test</string>
     <string name="tv_highscore_name">Namn</string>
     <string name="tv_highscore_score">Poäng</string>
     <string name="tv_highscore_title">Rekord</string>
@@ -19,4 +19,17 @@
     <string name="tv_game_title_turn">"\'s tur"</string>
     <string name="tv_game_title_won">" vann!"</string>
     <string name="tv_game_title_tie">Oavgjort</string>
+    <string name="tv_new_player_cancel">Avbryt</string>
+    <string name="tv_new_player_save">Spara</string>
+    <string name="tv_home_title">Fyra i rad</string>
+
+    <string-array name="nbr_rows_columns">
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
 </resources>

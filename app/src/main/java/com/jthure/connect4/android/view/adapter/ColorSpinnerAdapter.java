@@ -13,7 +13,8 @@ import com.jthure.connect4.android.util.ColorUtil;
 import com.jthure.connect4.model.Color;
 
 /**
- * Created by Jonas on 2016-11-24.
+ * Adapter responsible to provide views to the color selection {@link android.widget.Spinner}s in
+ * the {@link com.jthure.connect4.android.view.SelectedPlayerView}
  */
 
 public class ColorSpinnerAdapter extends BaseAdapter {
@@ -22,6 +23,7 @@ public class ColorSpinnerAdapter extends BaseAdapter {
     public ColorSpinnerAdapter(Context context){
         this.context=context;
 
+        //The colors that t´he adapter should provide is every color except EMPTY
         values = new Color[Color.values().length-1];
         for(int i=0,j=0;i<values.length;i++){
             if(Color.values()[i]==Color.EMPTY) {

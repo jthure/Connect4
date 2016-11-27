@@ -8,7 +8,7 @@ import android.widget.TableRow;
 import com.jthure.connect4.model.Game;
 
 /**
- * Created by Jonas on 2016-11-23.
+ * An header row consisting of buttons, one for each column, used to make a play at that column.
  */
 
 public class HeaderRow extends TableRow {

@@ -17,11 +17,11 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Created by Jonas on 2016-11-22.
+ * View that displays the color of a checker as an oval shape. It observes {@link Checker} and
+ * changes the displayed color accordingly
  */
 
-public class CheckerView extends FrameLayout implements Observer{
-    private static final String TAG = CheckerView.class.getSimpleName();
+public class CheckerView extends FrameLayout implements Observer {
     private Checker checker;
     private ImageView checkerImage;
 
@@ -52,15 +52,19 @@ public class CheckerView extends FrameLayout implements Observer{
         checkerImage.setImageResource(ColorUtil.getImageResource(checker.getColor()));
     }
 
-
-
-
+    /**
+     * Creates a new view.
+     * @param inflater An inflater that inflates the view
+     * @param root The parent view that provides layout params
+     * @param checker The {@link Checker} that this view should observer
+     * @return
+     */
     public static CheckerView createCheckerView(LayoutInflater inflater, ViewGroup root, Checker checker) {
         CheckerView checkerView = (CheckerView) inflater.inflate(R.layout.view_checker, root, false);
         checker.addObserver(checkerView);
         checkerView.checker = checker;
-        checkerView.checkerImage = (ImageView)checkerView.findViewById(R.id.checker_view_image);
-        checkerView.update(checker,null);
+        checkerView.checkerImage = (ImageView) checkerView.findViewById(R.id.checker_view_image);
+        checkerView.update(checker, null);
         return checkerView;
     }
 

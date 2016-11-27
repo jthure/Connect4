@@ -2,7 +2,7 @@
     <string name="app_name">Connect4</string>
 
     <string name="btn_new_game">New game</string>
-    <string name="tv_home_title" translatable="false">Connect4</string>
+    <string name="tv_home_title">Connect Four</string>
     <string name="tv_highscore_title">Highscore</string>
     <string name="tv_highscore_score">Score</string>
     <string name="tv_highscore_name">Name</string>
@@ -13,11 +13,23 @@
     <string name="btn_new_player">New player</string>
     <string name="et_new_player_name_hint">Enter name</string>
     <string name="tv_new_player_title">New player</string>
-    <string name="test" translatable="false">Test</string>
+    <string name="test">Test</string>
     <string name="btn_game_reset">Reset</string>
     <string name="tv_new_game_nbr_rows">Rows</string>
     <string name="tv_new_game_nbr_columns">Columns</string>
     <string name="tv_game_title_turn">\\\'s turn</string>
     <string name="tv_game_title_won">" won!"</string>
     <string name="tv_game_title_tie">Tie</string>
+    <string name="tv_new_player_save">Save</string>
+    <string name="tv_new_player_cancel">Cancel</string>
+
+    <string-array name="nbr_rows_columns">
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
 </resources>

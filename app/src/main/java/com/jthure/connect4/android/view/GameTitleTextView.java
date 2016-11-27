@@ -14,7 +14,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Created by Jonas on 2016-11-25.
+ * The text title that shows which of the players turn it is to make a play, or the result if the
+ * game has finished.
  */
 
 public class GameTitleTextView extends TextView implements Observer, Game.FinishListener {
@@ -42,7 +43,7 @@ public class GameTitleTextView extends TextView implements Observer, Game.Finish
         String s=game.getCurrentPlayer().getName()+getResources().getString(R.string.tv_game_title_turn);
         setText(s);
     }
-    public void observerGame(Game game){
+    public void observeGame(Game game){
         this.game=game;
         game.addObserver(this);
         update(game,null);

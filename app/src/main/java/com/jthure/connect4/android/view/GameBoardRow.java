@@ -11,7 +11,8 @@ import com.jthure.connect4.android.view.CheckerView;
 import com.jthure.connect4.model.GameBoard;
 
 /**
- * Created by Jonas on 2016-11-22.
+ * View that represents a row in the {@link GameBoardTable}. The row will hold a {@link CheckerView}
+ * in each cell
  */
 
 public class GameBoardRow extends TableRow{
