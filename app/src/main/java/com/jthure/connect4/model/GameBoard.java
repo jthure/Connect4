@@ -1,9 +1,5 @@
 package com.jthure.connect4.model;
 
-import android.util.Log;
-
-import java.util.Observer;
-
 /**
  * Represents the the game board which a {@link Game} is played on
  */
@@ -36,38 +32,39 @@ public class GameBoard {
             row--;
         }
         board[row][column].setColor(color);
+        if(checkIfTie()) return PlayResult.TIE;
         return checkIfWinningPlay(row, column) ? PlayResult.WIN : PlayResult.VALID_PLAY;
     }
 
     private boolean checkIfWinningPlay(int row, int column) {
         Color color = board[row][column].getColor();
-        for (int yStep = -1; yStep <= 1; yStep++) {
-            for (int xStep = -1; xStep <= 1; xStep++) {
-                if(!(yStep==0&&xStep==0)) {
-                    if (checkDirection(row, column, xStep, yStep, color)) return true;
-                }
-            }
-        }
-        return false;
-
+        return 1+ countDirection(row, column, 1, 0, color)+ countDirection(row, column, -1, 0, color)>=4||
+                1+ countDirection(row, column, 0, 1, color)+ countDirection(row, column, 0, -1, color)>=4||
+                1+ countDirection(row, column, 1, 1, color)+ countDirection(row, column, -1, -1, color)>=4||
+                1+ countDirection(row, column, 1, -1, color)+ countDirection(row, column, -1, 1, color)>=4;
     }
 
-    private boolean checkDirection(int row, int column, int xStep, int yStep, Color color) {
-        for (int count = 1; count <= 3; count++) {
+    private int countDirection(int row, int column, int xStep, int yStep, Color color) {
+        int step=1;
+        int nextRow=row + yStep*step;
+        int nextColumn=column + xStep*step;
+        while((nextRow >= 0 && nextRow < nbrRows() && nextColumn >= 0 && nextColumn < nbrColumns()) &&
+                (board[nextRow][nextColumn].getColor() == color))
+        {
+            step++;
+            nextRow=row + yStep*step;
+            nextColumn=column + xStep*step;
+        }
+        return step-1;
+    }
 
-            int nextRow=row + yStep*count;
-            int nextColumn=column + xStep*count;
-
-            if (nextRow >= 0 && nextRow < nbrRows() && nextColumn >= 0 && nextColumn < nbrColumns()) {
-                if (!(board[nextRow][nextColumn].getColor() == color)) {
-                    return false;
-                }
-            } else {
-                return false;
-            }
+    private boolean checkIfTie(){
+        for(Checker c:board[0]){
+            if(c.getColor()==Color.EMPTY)return false;
         }
         return true;
     }
+
     public void reset(){
         for (int row = 0; row < board.length; row++) {
             for (int col = 0; col < board[0].length; col++) {
@@ -85,7 +82,7 @@ public class GameBoard {
     }
 
     public enum PlayResult {
-        WIN, VALID_PLAY, INVALID_PLAY
+        WIN, VALID_PLAY, TIE, INVALID_PLAY
     }
 }
 

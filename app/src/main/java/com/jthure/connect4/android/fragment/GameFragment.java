@@ -67,7 +67,7 @@ public class GameFragment extends Fragment implements PlayColumnButton.OnColumnC
         View v = inflater.inflate(R.layout.fragment_game, container, false);
         gameTitleTextView=(GameTitleTextView) v.findViewById(R.id.tv_game_title);
         gameTitleTextView.observerGame(game);
-        game.setWinListener(gameTitleTextView);
+        game.setFinishListener(gameTitleTextView);
         ((GameBoardTable)v.findViewById(R.id.game_board_table)).setUp(game,this);
 
         v.findViewById(R.id.btn_game_reset).setOnClickListener(new View.OnClickListener() {

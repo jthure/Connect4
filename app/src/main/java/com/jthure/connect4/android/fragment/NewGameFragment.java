@@ -60,8 +60,8 @@ public class NewGameFragment extends Fragment implements View.OnClickListener, A
         selectedPlayersView = (LinearLayout) v.findViewById(R.id.selected_players);
         rows = (Spinner) v.findViewById(R.id.spinner_nbr_rows);
         columns = (Spinner) v.findViewById(R.id.spinner_nbr_columns);
-        rows.setSelection(3);
-        columns.setSelection(2);
+        rows.setSelection(2);
+        columns.setSelection(3);
         v.findViewById(R.id.btn_start_game).setOnClickListener(this);
         v.findViewById(R.id.btn_add_player).setOnClickListener(this);
         v.findViewById(R.id.btn_new_player).setOnClickListener(this);

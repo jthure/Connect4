@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.jthure.connect4.R;
 import com.jthure.connect4.model.Game;
+import com.jthure.connect4.model.GameBoard;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -16,7 +17,7 @@ import java.util.Observer;
  * Created by Jonas on 2016-11-25.
  */
 
-public class GameTitleTextView extends TextView implements Observer, Game.WinListener {
+public class GameTitleTextView extends TextView implements Observer, Game.FinishListener {
     private Game game;
 
     public GameTitleTextView(Context context) {
@@ -48,8 +49,12 @@ public class GameTitleTextView extends TextView implements Observer, Game.WinLis
     }
 
     @Override
-    public void onPlayerWon() {
-        String s=game.getCurrentPlayer().getName()+getResources().getString(R.string.tv_game_title_won);
+    public void onGameFinished(GameBoard.PlayResult result) {
+        String s;
+        if(result== GameBoard.PlayResult.WIN)
+            s=game.getCurrentPlayer().getName()+getResources().getString(R.string.tv_game_title_won);
+        else
+            s=getResources().getString(R.string.tv_game_title_tie);
         setText(s);
     }
 }

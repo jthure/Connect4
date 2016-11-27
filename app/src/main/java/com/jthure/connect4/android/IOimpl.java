@@ -16,9 +16,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Jonas on 2016-11-24.
@@ -80,24 +82,35 @@ public class IOimpl extends IO implements Serializable {
         if (rows == 0) {
             values.put(USER_COLUMN_NAME,player.getName());
             sqlDb.insert(USER_TABLE_NAME, null, values);
-            Log.d(TAG,"New player saved: "+ player.getName());
+            log("New player saved: "+ player.getName());
         }else{
-            Log.d(TAG,"Existing player updated: "+ player.getName());
+            log("Existing player updated: Name: "+ player.getName()+" Score: "+player.getWins());
         }
     }
 
     @Override
     public void log(String msg) {
+        if(!isExternalStorageWritable())return;
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault());
+        File file= new File(context.getExternalFilesDir(null),LOG_FILE);
         try {
-            FileOutputStream fos = context.openFileOutput(LOG_FILE,Context.MODE_APPEND);
-          
-            fos.write((msg+"\n").getBytes());
-            fos.close();
+            FileOutputStream fos = new FileOutputStream(file,true);
+            String logMsg = df.format(new Date(System.currentTimeMillis()))+": "+msg;
+            fos.write(logMsg.getBytes());
+            Log.d(TAG,logMsg);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
     }
 
     private static class MyDB extends SQLiteOpenHelper{

@@ -18,4 +18,5 @@
     <string name="tv_new_game_nbr_rows">Rader</string>
     <string name="tv_game_title_turn">"\'s tur"</string>
     <string name="tv_game_title_won">" vann!"</string>
+    <string name="tv_game_title_tie">Oavgjort</string>
 </resources>

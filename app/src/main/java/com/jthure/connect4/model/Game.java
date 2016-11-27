@@ -14,7 +14,7 @@ public class Game extends Observable {
     private GameBoard board;
     private int turn;
     private Checker turnChecker;
-    private WinListener winListener;
+    private FinishListener finishListener;
     private IO io;
     private boolean finished;
 
@@ -31,14 +31,19 @@ public class Game extends Observable {
         turnChecker=new Checker();
         turnChecker.setColor(players[0].getColor());
         this.io=io;
+        String s = "New game created. Size: "+rows+" X "+columns+" Players:";
+        for(Player p : playerNames){
+            s=s+" Name: "+p.getName()+" Score: "+p.getWins();
+        }
+        io.log(s);
     }
 
     /**
-     * Sets the {@link WinListener}
-     * @param winListener
+     * Sets the {@link FinishListener}
+     * @param finishListener
      */
-    public void setWinListener(WinListener winListener){
-        this.winListener=winListener;
+    public void setFinishListener(FinishListener finishListener){
+        this.finishListener = finishListener;
     }
 
     /**
@@ -83,9 +88,15 @@ public class Game extends Observable {
         switch (result) {
             case WIN:
                 finished=true;
-                winListener.onPlayerWon();
+                finishListener.onGameFinished(PlayResult.WIN);
                 players[turn].incrementNbrWonGames();
+                io.log("Player "+players[turn].getName()+" won a game");
                 io.writePlayer(players[turn]);
+                break;
+            case TIE:
+                finished=true;
+                finishListener.onGameFinished(PlayResult.TIE);
+                io.log("Game was a tie");
                 break;
             case VALID_PLAY:
                 nextTurn();
@@ -98,11 +109,11 @@ public class Game extends Observable {
     /**
      * Listener interface to nofify the listener when a player has won the game.
      */
-    public interface WinListener{
+    public interface FinishListener {
         /**
          * Notifies the listener that a player has won the game.
          */
-        void onPlayerWon();
+        void onGameFinished(PlayResult result);
     }
 
     /**
@@ -112,5 +123,6 @@ public class Game extends Observable {
         board.reset();
         nextTurn();
         finished=false;
+        io.log("Game reset");
     }
 }

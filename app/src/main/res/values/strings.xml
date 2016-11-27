@@ -19,4 +19,5 @@
     <string name="tv_new_game_nbr_columns">Columns</string>
     <string name="tv_game_title_turn">\\\'s turn</string>
     <string name="tv_game_title_won">" won!"</string>
+    <string name="tv_game_title_tie">Tie</string>
 </resources>

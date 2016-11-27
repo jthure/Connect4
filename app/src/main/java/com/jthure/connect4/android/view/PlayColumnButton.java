@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 
 import com.jthure.connect4.R;
 import com.jthure.connect4.model.Game;
@@ -16,7 +18,7 @@ import com.jthure.connect4.model.Game;
  * Created by Jonas on 2016-11-23.
  */
 
-public class PlayColumnButton extends LinearLayout implements  View.OnClickListener {
+public class PlayColumnButton extends RelativeLayout implements  View.OnClickListener {
     private int column;
     private OnColumnClickListener onColumnClickListener;
 
@@ -42,7 +44,11 @@ public class PlayColumnButton extends LinearLayout implements  View.OnClickListe
         button.setOnClickListener(button);
         button.column = column;
         button.onColumnClickListener = onColumnClickListener;
-        button.addView(CheckerView.createCheckerView(inflater,button,game.getTurnChecker()));
+        CheckerView checkerView=CheckerView.createCheckerView(inflater,button,game.getTurnChecker());
+        LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        params.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        checkerView.setLayoutParams(params);
+        button.addView(checkerView);
         return button;
     }
 
